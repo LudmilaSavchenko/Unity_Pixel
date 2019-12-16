@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public Transform groundCheck;
     private float groundRadius = 0.2f;
     public LayerMask whatIsGround;
+    public float minimalHeight;
 
     float squareArea;
     float rectangleArea;
@@ -54,6 +55,12 @@ public class Player : MonoBehaviour
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
             rigidbody.AddForce(Vector2.up * force, ForceMode2D.Impulse);
+        }
+
+        if (transform.position.y < minimalHeight)
+        {
+            rigidbody.velocity = new Vector2(0, 0);
+            transform.position = new Vector3(1, 1, 0);
         }
     }
 }
