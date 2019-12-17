@@ -29,6 +29,9 @@ public class Player : MonoBehaviour
     int orangesCount = 5;
     int tomaoesCount = 2;
 
+    long moonDistance = 300000000000;
+    int paperFold=0;
+    long paperDistance=1;
 
     void Start()
     {
@@ -73,6 +76,15 @@ public class Player : MonoBehaviour
                 Debug.Log("tomatoes, oranges, apples.");
             }
         }
+
+        //3
+        while (paperDistance < moonDistance)
+        {
+            paperDistance *= 2;
+            paperFold++;
+        }
+
+        Debug.Log($"The paper needs to be folded {paperFold} times");
 
     }
 
