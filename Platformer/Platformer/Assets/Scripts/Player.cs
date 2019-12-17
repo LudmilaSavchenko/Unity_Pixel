@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     private float groundRadius = 0.2f;
     public LayerMask whatIsGround;
     public float minimalHeight;
+    public bool isCheatMode;
+
 
     float squareArea;
     float rectangleArea;
@@ -23,14 +25,54 @@ public class Player : MonoBehaviour
     float rectangleSideB = 4.2f;
     float circleRadius = 5.1f;
 
+    int applesCount = 3;
+    int orangesCount = 5;
+    int tomaoesCount = 2;
+
+
     void Start()
     {
+        //1
         squareArea = Mathf.Pow(squareSide, 2);
         rectangleArea = rectangleSideA * rectangleSideB;
         circleArea = Mathf.PI * Mathf.Pow(circleRadius, 2);
 
         Debug.Log($"Square area is {squareArea};\nRectangle area is {rectangleArea};\nCircle area is {circleArea};");
 
+        //2
+        if (applesCount >= orangesCount && applesCount >= tomaoesCount)
+        {
+            if (orangesCount > tomaoesCount)
+            {
+                Debug.Log("apples, oranges, tomatoes.");
+            }
+            else
+            {
+                Debug.Log("apples, tomatoes, oranges.");
+            }
+        }
+        else if (orangesCount >= applesCount && orangesCount >= tomaoesCount)
+        {
+            if (applesCount > tomaoesCount)
+            {
+                Debug.Log("oranges, apples, tomatoes.");
+            }
+            else
+            {
+                Debug.Log("oranges, tomatoes, apples.");
+            }
+        }
+        else
+        {
+            if (applesCount > orangesCount)
+            {
+                Debug.Log("tomatoes, apples, oranges.");
+            }
+            else
+            {
+                Debug.Log("tomatoes, oranges, apples.");
+            }
+        }
 
     }
 
@@ -57,10 +99,14 @@ public class Player : MonoBehaviour
             rigidbody.AddForce(Vector2.up * force, ForceMode2D.Impulse);
         }
 
-        if (transform.position.y < minimalHeight)
+        if (transform.position.y < minimalHeight && isCheatMode)
         {
             rigidbody.velocity = new Vector2(0, 0);
             transform.position = new Vector3(1, 1, 0);
+        }
+        else if (transform.position.y < minimalHeight)
+        {
+            Destroy(gameObject);
         }
     }
 }

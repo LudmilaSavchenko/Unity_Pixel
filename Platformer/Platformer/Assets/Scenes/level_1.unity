@@ -2125,6 +2125,11 @@ PrefabInstance:
       propertyPath: minimalHeight
       value: -3
       objectReference: {fileID: 0}
+    - target: {fileID: 4072820398642449988, guid: e169d374ed5a5884483c73e381b539ca,
+        type: 3}
+      propertyPath: isCheatMode
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e169d374ed5a5884483c73e381b539ca, type: 3}
 --- !u!1001 &5675135666955584660
