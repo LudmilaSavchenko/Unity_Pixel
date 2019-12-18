@@ -14,20 +14,12 @@ public class Player : MonoBehaviour
     public LayerMask whatIsGround;
     public float minimalHeight;
     public bool isCheatMode;
+    public SpriteRenderer[] renderers;
 
 
-    float squareArea;
-    float rectangleArea;
-    float circleArea;
-
-    float squareSide = 2.4f;
-    float rectangleSideA = 3.3f;
-    float rectangleSideB = 4.2f;
-    float circleRadius = 5.1f;
-
-    int applesCount = 3;
-    int orangesCount = 5;
-    int tomaoesCount = 2;
+    float squareArea, rectangleArea, circleArea;
+    float squareSide = 2.4f, rectangleSideA = 3.3f, rectangleSideB = 4.2f, circleRadius = 5.1f;
+    int applesCount = 3, orangesCount = 5, tomaoesCount = 2;
 
     long moonDistance = 300000000000;
     int paperFold=0;
@@ -86,7 +78,41 @@ public class Player : MonoBehaviour
 
         Debug.Log($"The paper needs to be folded {paperFold} times");
 
+        //4
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            renderers[i].color = new Color(UnityEngine.Random.Range(0.1f, 1f), UnityEngine.Random.Range(0.1f, 1f), UnityEngine.Random.Range(0.1f, 1f), 1);
+        }
+
+        //5
+        Debug.Log(ReturnBoolean(2, 1));
+        DisplayAnyMessage();
+        Debug.Log(CalculateRadius(1.22f));
+
     }
+
+    bool ReturnBoolean(int firstNum, int secondNum)
+    {
+        if (firstNum > secondNum)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    void DisplayAnyMessage()
+    {
+        Debug.Log("Any message.");
+    }
+
+    float CalculateRadius(float circleRadius)
+    {
+        return Mathf.PI * Mathf.Pow(circleRadius, 2);
+    }
+
 
     void FixedUpdate()
     {
