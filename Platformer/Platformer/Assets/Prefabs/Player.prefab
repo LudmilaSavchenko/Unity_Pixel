@@ -126,9 +126,13 @@ GameObject:
   - component: {fileID: 4072820398642449986}
   - component: {fileID: 4072820398642449988}
   - component: {fileID: 3519781284424338837}
+  - component: {fileID: 4072820398375097225}
+  - component: {fileID: 4656693985518502275}
+  - component: {fileID: 8187497838198146873}
+  - component: {fileID: 996179242}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -232,9 +236,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  force: 4
+  force: 6
   rigidbody: {fileID: 4072820398642449986}
-  groundCheck: {fileID: 4072820397193504517}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
@@ -245,6 +248,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  groundDetection: {fileID: 8187497838198146873}
 --- !u!60 &3519781284424338837
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -810,3 +814,56 @@ PolygonCollider2D:
       - {x: 1.8665156, y: 6.5683093}
       - {x: 1.795507, y: 6.558165}
       - {x: 1.8056511, y: 6.558165}
+--- !u!114 &4072820398375097225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4072820398642449989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a70825867be2944baed9d17f47ad03b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+--- !u!114 &4656693985518502275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4072820398642449989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35eee21ec9752f64fa4d08eefc40e641, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  collisionTag: Enemy
+--- !u!114 &8187497838198146873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4072820398642449989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2de318b3257a32748900b4089be44ea6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGrounded: 0
+--- !u!114 &996179242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4072820398642449989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7f5473b0e36dd843aed1778865a4c16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinsCount: 0
