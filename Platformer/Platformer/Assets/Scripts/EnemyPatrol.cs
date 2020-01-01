@@ -13,7 +13,7 @@ public class EnemyPatrol : MonoBehaviour
     public float speed;
 
     private void Update()
-    { 
+    {
         if (isRightDirection && groundDetection.isGrounded)
         {
             rigidbody.velocity = Vector2.right * speed;

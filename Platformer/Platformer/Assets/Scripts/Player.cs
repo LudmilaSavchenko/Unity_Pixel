@@ -9,19 +9,9 @@ public class Player : MonoBehaviour
     public float force;
     public Rigidbody2D rigidbody;
 
-    //private bool isGrounded = false;
-    //public Transform groundCheck;
-    //private float groundRadius = 0.2f;
-    public LayerMask whatIsGround;
     public float minimalHeight;
     public bool isCheatMode;
-    public SpriteRenderer[] renderers;
     public GroundDetection groundDetection;
-
-    // void FixedUpdate()
-    //{
-    //    isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
-    //}
 
     // Update is called once per frame
     void Update()

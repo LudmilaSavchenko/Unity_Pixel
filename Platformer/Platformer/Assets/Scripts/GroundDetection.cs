@@ -5,20 +5,29 @@ using UnityEngine;
 public class GroundDetection : MonoBehaviour
 {
     public bool isGrounded;
+    public Transform groundCheck;
+    private float groundRadius = 0.2f;
+    public LayerMask whatIsGround;
 
-    private void OnCollisionEnter2D(Collision2D col)
-    {
-        if (col.gameObject.CompareTag("Platform"))
-        {
-            isGrounded = true;
-        }
-    }
+    //public bool isGrounded;
 
-    private void OnCollisionExit2D(Collision2D col)
+    void FixedUpdate()
     {
-        if (col.gameObject.CompareTag("Platform"))
-        {
-            isGrounded = false;
-        }
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
     }
+    //private void OnCollisionEnter2D(Collision2D col)
+    //{
+    //    if (col.gameObject.CompareTag("Platform"))
+    //    {
+    //        isGrounded = true;
+    //    }
+    //}
+
+    //private void OnCollisionExit2D(Collision2D col)
+    //{
+    //    if (col.gameObject.CompareTag("Platform"))
+    //    {
+    //        isGrounded = false;
+    //    }
+    //}
 }
