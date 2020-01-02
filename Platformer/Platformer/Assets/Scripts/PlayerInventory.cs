@@ -11,7 +11,7 @@ public class PlayerInventory : MonoBehaviour
         if (col.gameObject.CompareTag("Coin"))
         {
             coinsCount++;
-            Debug.Log(coinsCount);
+            Destroy(col.gameObject);
         }
 
         if (col.gameObject.CompareTag("First aid kit"))
@@ -19,6 +19,7 @@ public class PlayerInventory : MonoBehaviour
             Health healthKit = col.gameObject.GetComponent<Health>();
             Health health = this.gameObject.GetComponent<Health>();
             health.SetHealth(healthKit.health);
+            Destroy(col.gameObject);
         }
     }
 }
