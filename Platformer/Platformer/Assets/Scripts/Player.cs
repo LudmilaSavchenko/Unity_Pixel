@@ -12,25 +12,53 @@ public class Player : MonoBehaviour
     public float minimalHeight;
     public bool isCheatMode;
     public GroundDetection groundDetection;
+    private Vector3 direction;
+    public Animator animator;
+    public SpriteRenderer spriteRenderer;
+    private bool isJumping;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        if (animator != null)
+            animator.SetBool("isGrounded", groundDetection.isGrounded);
+
+        if (!isJumping && !groundDetection.isGrounded)
+            animator.SetTrigger("StartFall");
+
+        isJumping = isJumping && !groundDetection.isGrounded;
+
+        direction = Vector3.zero; //(0,0)
+
         if (Input.GetKey(KeyCode.A))
-        {
-            transform.Translate(Vector2.left * Time.deltaTime * speed);
-        }
+            direction = Vector3.left; // (x-1,y0)
 
         if (Input.GetKey(KeyCode.D))
-        {
-            transform.Translate(Vector2.right * Time.deltaTime * speed);
-        }
+            direction = Vector3.right; // (1,0)
+
+        direction *= speed;
+        direction.y = rigidbody.velocity.y;
+        rigidbody.velocity = direction;
 
         if (Input.GetKeyDown(KeyCode.Space) && groundDetection.isGrounded)
         {
             rigidbody.AddForce(Vector2.up * force, ForceMode2D.Impulse);
+            animator.SetTrigger("StartJump");
+            isJumping = true;
         }
 
+        if (direction.x > 0)
+            spriteRenderer.flipX = false;
+        if (direction.x < 0)
+            spriteRenderer.flipX = true;
+
+        animator.SetFloat("Speed", Mathf.Abs(direction.x));
+
+        CheckFall();
+    }
+
+    void CheckFall()
+    {
         if (transform.position.y < minimalHeight && isCheatMode)
         {
             rigidbody.velocity = new Vector2(0, 0);

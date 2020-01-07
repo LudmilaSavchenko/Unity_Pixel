@@ -74,7 +74,6 @@ GameObject:
   - component: {fileID: 1164629506676545288}
   - component: {fileID: 1164629506676545303}
   - component: {fileID: 1164629506676545302}
-  - component: {fileID: 1164629506676545301}
   - component: {fileID: 1164629506676545289}
   - component: {fileID: 1164629506676545290}
   - component: {fileID: 752306253}
@@ -171,22 +170,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &1164629506676545301
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1164629506676545300}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!114 &1164629506676545289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,10 +188,6 @@ MonoBehaviour:
   groundDetection: {fileID: 5693830146169385543}
   isRightDirection: 0
   speed: 1
-  groundCheck: {fileID: 1811843641}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!114 &1164629506676545290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,6 +228,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrounded: 0
+  groundCheck: {fileID: 0}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1164629507920363875
 GameObject:
   m_ObjectHideFlags: 0

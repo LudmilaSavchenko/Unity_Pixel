@@ -9,6 +9,10 @@ public class EnemyPatrol : MonoBehaviour
     public Rigidbody2D rigidbody;
     public GroundDetection groundDetection;
 
+
+    public SpriteRenderer spriteRenderer;
+    public Animator animator;
+
     public bool isRightDirection;
     public float speed;
 
@@ -20,6 +24,7 @@ public class EnemyPatrol : MonoBehaviour
             if (transform.position.x > rightBorder.transform.position.x)
             {
                 isRightDirection = !isRightDirection;
+                spriteRenderer.flipX = false;
             }
         }
         else if (groundDetection.isGrounded)
@@ -28,8 +33,11 @@ public class EnemyPatrol : MonoBehaviour
             if (transform.position.x < leftBorder.transform.position.x)
             {
                 isRightDirection = !isRightDirection;
+                spriteRenderer.flipX = true;
             }
         }
+
+        animator.SetFloat("Speed", Mathf.Abs(speed));
     }
 }
 
