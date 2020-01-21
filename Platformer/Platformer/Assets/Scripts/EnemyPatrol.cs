@@ -14,7 +14,16 @@ public class EnemyPatrol : MonoBehaviour
     public Animator animator;
 
     public bool isRightDirection;
-    public float speed;
+    [SerializeField] private float speed;
+    public float Speed
+    {
+        get { return speed; }
+        set
+        {
+            if (value > 0.5)
+                speed = value;
+        }
+    }
 
     private void Update()
     {

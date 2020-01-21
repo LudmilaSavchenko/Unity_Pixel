@@ -4,22 +4,39 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
-    public int coinsCount;
-
-    private void OnTriggerEnter2D(Collider2D col)
+    [SerializeField]private int coinsCount;
+    public int CoinsCount
     {
-        if (col.gameObject.CompareTag("Coin"))
+        get { return coinsCount; }
+        set
         {
-            coinsCount++;
-            Destroy(col.gameObject);
-        }
-
-        if (col.gameObject.CompareTag("First aid kit"))
-        {
-            Health healthKit = col.gameObject.GetComponent<Health>();
-            Health health = this.gameObject.GetComponent<Health>();
-            health.SetHealth(healthKit.health);
-            Destroy(col.gameObject);
+            if (value > 0)
+                coinsCount = value;
         }
     }
+
+    #region Singleton
+    public static PlayerInventory Instance { get; set; }
+    #endregion
+    private void Awake() // Awake -> Start -> Update -> FixUpdate -> PlayUpdate
+    {
+        Instance = this;
+    }
+
+    //private void OnTriggerEnter2D(Collider2D col)
+    //{
+    //    if (col.gameObject.CompareTag("Coin"))
+    //    {
+    //        coinsCount++;
+    //        Destroy(col.gameObject);
+    //    }
+
+    //    if (col.gameObject.CompareTag("First aid kit"))
+    //    {
+    //        Health healthKit = col.gameObject.GetComponent<Health>();
+    //        Health health = this.gameObject.GetComponent<Health>();
+    //        health.SetHealth(healthKit.health);
+    //        Destroy(col.gameObject);
+    //    }
+    //}
 }

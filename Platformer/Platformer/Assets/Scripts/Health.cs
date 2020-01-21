@@ -4,7 +4,21 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public int health;
+    [SerializeField]private int health;
+    public int HealthPoint
+    {
+        get { return health; }
+        set
+        {
+            if (value > 0)
+                health = value;
+        }
+    }
+
+    private void start()
+    {
+        Debug.Log(Player.Instance.isCheatMode);
+    }
 
     public void TakeHit(int damage)
     {
