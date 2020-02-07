@@ -6,15 +6,17 @@ public class EnemyPatrol : MonoBehaviour
 {
     public GameObject leftBorder;
     public GameObject rightBorder;
-    public Rigidbody2D rigidbody;
+    [SerializeField]private Rigidbody2D rigidbody;
     public GroundDetection groundDetection;
 
 
-    public SpriteRenderer spriteRenderer;
-    public Animator animator;
+    [SerializeField]private SpriteRenderer spriteRenderer;
+    [SerializeField]private CollisionDamage collisionDamage;
+    [SerializeField]private Animator animator;
 
     public bool isRightDirection;
     [SerializeField] private float speed;
+
     public float Speed
     {
         get { return speed; }
@@ -27,24 +29,19 @@ public class EnemyPatrol : MonoBehaviour
 
     private void Update()
     {
-        if (isRightDirection && groundDetection.isGrounded)
+        if (groundDetection.isGrounded)
         {
-            rigidbody.velocity = Vector2.right * speed;
-            if (transform.position.x > rightBorder.transform.position.x)
-            {
-                isRightDirection = !isRightDirection;
-                spriteRenderer.flipX = false;
-            }
+            if (transform.position.x > rightBorder.transform.position.x || collisionDamage.Direction < 0)
+                isRightDirection = false;
+            else if (transform.position.x < leftBorder.transform.position.x || collisionDamage.Direction > 0)
+                isRightDirection = true;
+            rigidbody.velocity = isRightDirection ? Vector2.right : Vector2.left;
+            rigidbody.velocity *= speed;
         }
-        else if (groundDetection.isGrounded)
-        {
-            rigidbody.velocity = Vector2.left * speed;
-            if (transform.position.x < leftBorder.transform.position.x)
-            {
-                isRightDirection = !isRightDirection;
-                spriteRenderer.flipX = true;
-            }
-        }
+
+        if (rigidbody.velocity.x > 0)
+            spriteRenderer.flipX = true;
+        else { spriteRenderer.flipX = false; }
 
         animator.SetFloat("Speed", Mathf.Abs(speed));
     }

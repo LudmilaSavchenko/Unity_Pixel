@@ -5,32 +5,34 @@ using UnityEngine;
 public class CollisionDamage : MonoBehaviour
 {
     public int damage;
-    public string collisionTag;
-    public Animator animator;
+    [SerializeField]private string collisionTag= "Player";
+    [SerializeField]private Animator animator;
     public SpriteRenderer spriteRenderer;
-
-    private void OnCollisionEnter2D(Collision2D col)
+    private Health health;
+    private float direction;
+    public float Direction
     {
-        if (col.gameObject.CompareTag(collisionTag))
-        {
-            //Debug.Log($"{col.gameObject.tag} Взаимодействие с правильным объектом");
-            Health health = col.gameObject.GetComponent<Health>();
-            health.TakeHit(damage);
-                       
-            if (animator != null)
-            {
-                if (col.transform.position.x < transform.position.x && spriteRenderer != null)
-                {
-                    spriteRenderer.flipX = false;
-                }
-                else if (spriteRenderer != null)
-                {
-                    spriteRenderer.flipX = true;
-                }
-
-                animator.SetTrigger("Biting");
-            }
-               
-        }
+        get { return direction; }
     }
-}
+
+    private void OnCollisionStay2D(Collision2D col) //Stay - Enter
+    {
+        health = col.gameObject.GetComponent<Health>();
+        
+        if (health != null)
+        {
+            direction = col.transform.position.x - transform.position.x;
+            animator.SetFloat("Direction", Mathf.Abs(direction));
+        }
+
+    }
+
+    public void SetDamage()
+   {
+        if (health != null)
+            health.TakeHit(damage);
+        health = null;
+        direction = 0;
+        animator.SetFloat("Direction", 0f);
+    }
+}       

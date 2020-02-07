@@ -27,8 +27,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public Rigidbody2D rigidbody;
-
+    [SerializeField]private Rigidbody2D rigidbody;
     [SerializeField]private float minimalHeight;
     public float MinimalHeight
     {
@@ -47,7 +46,13 @@ public class Player : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     private bool isJumping;
 
-     #region Singleton
+    [SerializeField] private GameObject arrow;
+    [SerializeField] private Transform arrowSpawPoint;
+    [SerializeField] private bool isReadyToShoot = true;
+    [SerializeField] private float coolDownShot;
+
+
+    #region Singleton
     public static Player Instance { get; set; }
     #endregion
     private void Awake() // Awake -> Start -> Update -> FixUpdate -> PlayUpdate
@@ -57,15 +62,6 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        CatClass cat1 = new CatClass();
-        CatClass cat2 = new CatClass("Kesha", 1, 2, 1, 2);
-        //cat.age = 13;
-        cat1.Meow();
-        cat2.Meow();
-
-        Bus bus = new Bus();
-        bus.Beep();
-        bus.BeepMsg();
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -116,14 +112,56 @@ public class Player : MonoBehaviour
         }
 
         if (direction.x > 0)
+        {
             spriteRenderer.flipX = false;
+            arrowSpawPoint.transform.position = new Vector2(transform.position.x + 1, transform.position.y);
+        }
         if (direction.x < 0)
+        {
             spriteRenderer.flipX = true;
+            arrowSpawPoint.transform.position = new Vector2(transform.position.x - 1, transform.position.y);
+        }
+
+        //arrowSpawPoint.transform.rotation = Quaternion.Euler(0, 180, 0);
+
 
         animator.SetFloat("Speed", Mathf.Abs(direction.x));
 
         CheckFall();
    }
+
+    private void Update()
+    {
+        CheckShoot();
+    }
+
+    void CheckShoot()
+    {
+        if (Input.GetMouseButtonDown(0) && isReadyToShoot)  // 0  левая. 1 правая
+        {
+            animator.SetTrigger("CollisionDamage");
+            //prefab.GetComponent<Arrow>().SetImpulse
+               // (Vector2.right, spriteRenderer.flipX ? - force : force, gameObject);
+            //MakeShoot();
+            StartCoroutine(CoolDownShot());
+        }
+    }
+
+    public void MakeShoot()
+    {
+        GameObject prefab =     Instantiate
+                (arrow, arrowSpawPoint.position, Quaternion.identity);
+        prefab.GetComponent<Arrow>().SetImpulse
+                (Vector2.right, spriteRenderer.flipX ? -force : force, gameObject);
+    }
+
+    IEnumerator CoolDownShot()
+    {
+        isReadyToShoot = false;
+        yield return new WaitForSeconds(coolDownShot);
+        isReadyToShoot = true;
+        yield break;
+    }
 
     void CheckFall()
     {
@@ -137,86 +175,26 @@ public class Player : MonoBehaviour
             Destroy(gameObject);
         }
     }
-}
 
-public class CatClass
-{
-    public string _name;
-    public int _age;
-    public int _height;
-    public int _lengthTail;
+    //void DebugLog()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.E))
+    //    {
+    //        StartCoroutine(Log());
+    //    }
+    //}
 
-    public int _weight { get; set; }
+    //IEnumerator Log()
+    //{
+    //    for (int i = 0; i < 300; i++)
+    //    {
+    //        Debug.Log("сообщение");
+    //        yield return new WaitForSeconds(1f);
+    //        //yield return null; если считать по кадрам.
+    //    }
 
-    public int age => _age;
+    //    //yield return null;
+    //    yield break;
+    //}
 
-    public CatClass() { }
-
-    public CatClass(string name, int age, int height, int lengthTail, int weight)
-    {
-        _name = name;
-        _age = age;
-        _weight = weight;
-        _height = height;
-        _lengthTail = lengthTail;
-    }
-
-    public void Meow()
-    {
-        Debug.Log($"Имя: {_name}, возраст: {age}, вес: {_weight}, рост: {_height}, длина хвоста: {_lengthTail}.");
-    }
-}
-
-public struct CatStruct
-{
-    public string name;
-    public float age;
-    public float weight;
-    public float height;
-    public float lengthTail;
-
-    public void Meow()
-    {
-            Debug.Log($"Имя: {name}, возраст: {age}, вес: {weight}, рост: {height}, длина хвоста: {lengthTail}.");
-    }
-}
-
-public abstract class Vehicle
-{
-    public string _name;
-    public abstract void Beep();
-    public virtual void BeepMsg()
-    {
-        Debug.Log("Бибип!");
-    }
-}
-
-public class Bus: Vehicle
-{
-    public override void Beep()
-    {
-        base.BeepMsg();
-    }
-
-    public override void BeepMsg()
-    {
-        base.BeepMsg();
-        Debug.Log("Автобусное бибип!!");
-    }
-}
-
-public class Car: Vehicle
-{
-    public override void Beep()
-    {
-        Debug.Log("Машинное бибип");
-    }
-}
-
-public class Tractor: Vehicle
-{
-    public override void Beep()
-    {
-        Debug.Log("Тракторное бибип");
-    }
 }
