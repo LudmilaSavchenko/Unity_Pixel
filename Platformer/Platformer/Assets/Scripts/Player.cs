@@ -15,7 +15,6 @@ public class Player : MonoBehaviour
                 speed = value;
         }
     }
-
     [SerializeField]private float force;
     public float Force
     {
@@ -26,7 +25,6 @@ public class Player : MonoBehaviour
                 force = value;
         }
     }
-
     [SerializeField]private Rigidbody2D rigidbody;
     [SerializeField]private float minimalHeight;
     public float MinimalHeight
@@ -46,10 +44,12 @@ public class Player : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     private bool isJumping;
 
-    [SerializeField] private GameObject arrow;
+    //[SerializeField] private GameObject arrow;
+    [SerializeField] private Arrow arrow;
     [SerializeField] private Transform arrowSpawPoint;
     [SerializeField] private bool isReadyToShoot = true;
     [SerializeField] private float coolDownShot;
+    private Arrow prefab;
 
 
     #region Singleton
@@ -113,17 +113,12 @@ public class Player : MonoBehaviour
 
         if (direction.x > 0)
         {
-            spriteRenderer.flipX = false;
-            arrowSpawPoint.transform.position = new Vector2(transform.position.x + 1, transform.position.y);
+            transform.localScale = new Vector3(1, 1, 1);
         }
-        if (direction.x < 0)
+        else if (direction.x < 0)
         {
-            spriteRenderer.flipX = true;
-            arrowSpawPoint.transform.position = new Vector2(transform.position.x - 1, transform.position.y);
+            transform.localScale = new Vector3(-1, 1, 1);
         }
-
-        //arrowSpawPoint.transform.rotation = Quaternion.Euler(0, 180, 0);
-
 
         animator.SetFloat("Speed", Mathf.Abs(direction.x));
 
@@ -140,19 +135,17 @@ public class Player : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && isReadyToShoot)  // 0  левая. 1 правая
         {
             animator.SetTrigger("CollisionDamage");
-            //prefab.GetComponent<Arrow>().SetImpulse
-               // (Vector2.right, spriteRenderer.flipX ? - force : force, gameObject);
-            //MakeShoot();
             StartCoroutine(CoolDownShot());
         }
     }
 
     public void MakeShoot()
     {
-        GameObject prefab =     Instantiate
+        prefab = Instantiate
                 (arrow, arrowSpawPoint.position, Quaternion.identity);
-        prefab.GetComponent<Arrow>().SetImpulse
-                (Vector2.right, spriteRenderer.flipX ? -force : force, gameObject);
+        prefab.SetImpulse
+             (Vector2.right, transform.lossyScale.x * force, gameObject);
+        // (Vector2.right, spriteRenderer.flipX ? -force : force, gameObject);
     }
 
     IEnumerator CoolDownShot()
@@ -175,26 +168,4 @@ public class Player : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    //void DebugLog()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.E))
-    //    {
-    //        StartCoroutine(Log());
-    //    }
-    //}
-
-    //IEnumerator Log()
-    //{
-    //    for (int i = 0; i < 300; i++)
-    //    {
-    //        Debug.Log("сообщение");
-    //        yield return new WaitForSeconds(1f);
-    //        //yield return null; если считать по кадрам.
-    //    }
-
-    //    //yield return null;
-    //    yield break;
-    //}
-
 }

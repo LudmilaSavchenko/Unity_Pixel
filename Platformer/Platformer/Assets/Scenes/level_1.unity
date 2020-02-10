@@ -2583,6 +2583,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1580617235991536921, guid: e169d374ed5a5884483c73e381b539ca,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580617235991536921, guid: e169d374ed5a5884483c73e381b539ca,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4072820398642449989, guid: e169d374ed5a5884483c73e381b539ca,
         type: 3}
       propertyPath: m_Name
@@ -2658,16 +2668,12 @@ PrefabInstance:
       propertyPath: isReadyToShoot
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1580617235991536921, guid: e169d374ed5a5884483c73e381b539ca,
+    - target: {fileID: 4072820398642449988, guid: e169d374ed5a5884483c73e381b539ca,
         type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1580617235991536921, guid: e169d374ed5a5884483c73e381b539ca,
+      propertyPath: arrow
+      value: 
+      objectReference: {fileID: 1409725728300213267, guid: a0f531025befba24893303065b4e62be,
         type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e169d374ed5a5884483c73e381b539ca, type: 3}
 --- !u!1001 &4138039669349899494
