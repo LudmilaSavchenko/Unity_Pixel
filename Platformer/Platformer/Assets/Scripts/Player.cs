@@ -49,7 +49,10 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform arrowSpawPoint;
     [SerializeField] private bool isReadyToShoot = true;
     [SerializeField] private float coolDownShot;
+    [SerializeField] private int arrowCount = 3;
     private Arrow prefab;
+    private List<Arrow> arrowPool;
+
 
 
     #region Singleton
@@ -62,6 +65,13 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        arrowPool = new List<Arrow>();
+        for (int i = 0; i < arrowCount; i++)
+        {
+            var arrowTemp = Instantiate(arrow, arrowSpawPoint); //.position , Quaternion.identity);
+            arrowPool.Add(arrowTemp);
+            arrowTemp.gameObject.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -141,19 +151,45 @@ public class Player : MonoBehaviour
 
     public void MakeShoot()
     {
-        prefab = Instantiate
-                (arrow, arrowSpawPoint.position, Quaternion.identity);
+        prefab = GetArrowFromPool();
         prefab.SetImpulse
-             (Vector2.right, transform.lossyScale.x * force, gameObject);
+             (Vector2.right, transform.lossyScale.x * force, this);
         // (Vector2.right, spriteRenderer.flipX ? -force : force, gameObject);
     }
 
-    IEnumerator CoolDownShot()
+    private IEnumerator CoolDownShot()
     {
         isReadyToShoot = false;
         yield return new WaitForSeconds(coolDownShot);
         isReadyToShoot = true;
         yield break;
+    }
+
+    private Arrow GetArrowFromPool()
+    {
+        if (arrowPool.Count > 0)
+        {
+            var arrowTemp = arrowPool[0];
+            arrowPool.Remove(arrowTemp);
+            arrowTemp.gameObject.SetActive(true);
+            arrowTemp.transform.parent = null;
+            arrowTemp.transform.position = arrowSpawPoint.transform.position;
+            return arrowTemp;
+        }
+
+        return Instantiate
+                    (arrow, arrowSpawPoint.position, Quaternion.identity);
+    }
+
+    public void ReturnArrowToPool(Arrow arrowTemp)
+    {
+        if (!arrowPool.Contains(arrowTemp))
+        {
+            arrowPool.Add(arrowTemp);
+            arrowTemp.transform.parent = arrowSpawPoint;
+            arrowTemp.transform.position = arrowSpawPoint.transform.position;
+            arrowTemp.gameObject.SetActive(false);
+        }
     }
 
     void CheckFall()

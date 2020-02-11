@@ -12,11 +12,17 @@ public class TriggerDamage : MonoBehaviour
     }
 
     [SerializeField] private bool isDestroyingAfterCollision;
+    [SerializeField] private IObjectDestroyer destroyer;
     private GameObject parent;
     public GameObject Parent
     {
         get { return parent; }
         set { parent = value; }
+    }
+
+    public void Init(IObjectDestroyer destroyer)
+    {
+        this.destroyer = destroyer;
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -35,6 +41,15 @@ public class TriggerDamage : MonoBehaviour
         }
 
         if (isDestroyingAfterCollision)
-            Destroy(gameObject);
+        {
+            if (destroyer == null)
+                Destroy(gameObject);
+            else destroyer.Destroy(gameObject);
+        }
     }
+}
+
+public interface IObjectDestroyer
+{
+    void Destroy(GameObject gameObject);
 }
