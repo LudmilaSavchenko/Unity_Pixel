@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1a63883d75ca3b844b92050c1f29a352, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 281f88368c8505e42ba259e6b51f2836, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -119,18 +119,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.23629045, y: -0.0030291677}
+  m_Offset: {x: 0.08504197, y: -0.081287175}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.318, y: 0.113265626}
+    oldSize: {x: 0.32, y: 0.32}
     newSize: {x: 1.318, y: 0.113265626}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.84541893, y: 0.03450215}
+  m_Size: {x: 0.12212449, y: 0.105645835}
   m_EdgeRadius: 0
 --- !u!114 &1409725728300213267
 MonoBehaviour:
@@ -147,7 +147,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 9040826117683394842}
   rigidbody: {fileID: 9040826117683394843}
   triggerDamage: {fileID: 2009850436}
-  force: 5
+  force: 4
   lifeTime: 3
 --- !u!95 &7431802638492008788
 Animator:

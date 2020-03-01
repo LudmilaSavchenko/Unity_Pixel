@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007856902604553517}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.67, y: 0, z: 0}
+  m_LocalPosition: {x: 0.23, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4072820398642449984}
@@ -54,7 +54,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4072820397193504518}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.02, y: -0.77, z: -14.892578}
+  m_LocalPosition: {x: -0.17, y: -0.23, z: -14.892578}
   m_LocalScale: {x: 1, y: 0.9383503, z: 1}
   m_Children: []
   m_Father: {fileID: 4072820398642449984}
@@ -119,7 +119,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2.9491205
+  orthographic size: 1.3258634
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -222,7 +222,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a900e7434b78af0458fc104ef87b8219, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 754c138ae941027419422e25a5c5c9b1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -267,14 +267,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  force: 5
+  force: 2
   rigidbody: {fileID: 4072820398642449986}
-  minimalHeight: -3
+  minimalHeight: -2
   isCheatMode: 1
   groundDetection: {fileID: 8187497838198146873}
   animator: {fileID: 1685231322}
   spriteRenderer: {fileID: 4072820398642449985}
-  arrow: {fileID: 9040826117683394837, guid: a0f531025befba24893303065b4e62be, type: 3}
+  arrow: {fileID: 1409725728300213267, guid: a0f531025befba24893303065b4e62be, type: 3}
+  arrowSpawPoint: {fileID: 1580617235991536921}
+  isReadyToShoot: 1
+  coolDownShot: 3
+  arrowCount: 3
 --- !u!114 &4072820398375097225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,18 +335,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.015426129, y: -0.00820601}
+  m_Offset: {x: -0.1486578, y: -0.12339866}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.786, y: 1.9965764}
+    oldSize: {x: 0.85333335, y: 0.85333335}
     newSize: {x: 20.775131, y: 19.710001}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.85130817, y: 1.8097544}
+  m_Size: {x: 0.20691514, y: 0.369205}
   m_EdgeRadius: 0
 --- !u!95 &1685231322
 Animator:

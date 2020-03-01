@@ -15,9 +15,10 @@ public class Health : MonoBehaviour
         }
     }
 
-    private void start()
+    private void Start()
     {
-        Debug.Log(Player.Instance.isCheatMode);
+        //Debug.Log(Player.Instance.isCheatMode);
+        GameManager.Instance.healthContainer.Add(gameObject, this);
     }
 
     public void TakeHit(int damage)

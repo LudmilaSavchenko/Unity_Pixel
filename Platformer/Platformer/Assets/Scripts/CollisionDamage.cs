@@ -17,10 +17,13 @@ public class CollisionDamage : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D col) //Stay - Enter
     {
-        health = col.gameObject.GetComponent<Health>();
-        
-        if (health != null)
+        //health = col.gameObject.GetComponent<Health>();
+
+        //if (health != null)
+
+        if (GameManager.Instance.healthContainer.ContainsKey(col.gameObject))
         {
+            var health = GameManager.Instance.healthContainer[col.gameObject];
             direction = col.transform.position.x - transform.position.x;
             animator.SetFloat("Direction", Mathf.Abs(direction));
         }

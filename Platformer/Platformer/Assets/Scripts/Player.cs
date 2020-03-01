@@ -76,10 +76,14 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("Coin"))
+        //if (col.gameObject.CompareTag("Coin"))
+        if (GameManager.Instance.coinContainer.ContainsKey(col.gameObject))
         {
             PlayerInventory.Instance.CoinsCount++;
-            Destroy(col.gameObject);
+            //Destroy(col.gameObject);
+            var coin = GameManager.Instance.coinContainer[col.gameObject];
+            coin.StartDestroy();
+            Debug.Log("Player после StartDestroy");
         }
 
         if (col.gameObject.CompareTag("First aid kit"))

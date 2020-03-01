@@ -27,16 +27,15 @@ public class TriggerDamage : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("Фигня1");
         if (col.gameObject == parent)
             return;
 
-        var health = col.gameObject.GetComponent<Health>();
-        Debug.Log(col.gameObject.name);
-        Debug.Log("Фигня2");
+        //var health = col.gameObject.GetComponent<Health>();
 
-        if (health != null)
+        //if (health != null)
+        if (GameManager.Instance.healthContainer.ContainsKey(col.gameObject))
         {
+            var health = GameManager.Instance.healthContainer[col.gameObject];
             health.TakeHit(damage);
         }
 

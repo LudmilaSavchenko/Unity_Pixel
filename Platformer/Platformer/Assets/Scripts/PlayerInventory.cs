@@ -25,17 +25,20 @@ public class PlayerInventory : MonoBehaviour
 
     //private void OnTriggerEnter2D(Collider2D col)
     //{
-    //    if (col.gameObject.CompareTag("Coin"))
+    //    //if (col.gameObject.CompareTag("Coin"))
+    //    if (GameManager.Instance.coinContainer.ContainsKey(col.gameObject))
     //    {
-    //        coinsCount++;
-    //        Destroy(col.gameObject);
+    //        CoinsCount++;
+    //        //Destroy(col.gameObject);
+    //        var coin = GameManager.Instance.coinContainer[col.gameObject];
+    //        coin.StartDestroy();
     //    }
 
     //    if (col.gameObject.CompareTag("First aid kit"))
     //    {
     //        Health healthKit = col.gameObject.GetComponent<Health>();
     //        Health health = this.gameObject.GetComponent<Health>();
-    //        health.SetHealth(healthKit.health);
+    //        health.SetHealth(healthKit.HealthPoint);
     //        Destroy(col.gameObject);
     //    }
     //}
