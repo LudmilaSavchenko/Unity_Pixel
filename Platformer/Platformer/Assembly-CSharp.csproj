@@ -62,8 +62,10 @@
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\GroundDetection.cs" />
      <Compile Include="Assets\Scripts\Health.cs" />
+     <Compile Include="Assets\Scripts\Plant.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\PlayerInventory.cs" />
+     <Compile Include="Assets\Scripts\Rock.cs" />
      <Compile Include="Assets\Scripts\TriggerDamage.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>D:/GitHub/Unity_Pixel/Platformer/Platformer/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

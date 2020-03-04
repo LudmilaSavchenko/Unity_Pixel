@@ -37,7 +37,6 @@ public class Arrow : MonoBehaviour, IObjectDestroyer
     private IEnumerator StartLife()
     {   
         yield return new WaitForSeconds(lifeTime);
-        Debug.Log("Фигня001");
         Destroy(gameObject);
         yield break;
     }

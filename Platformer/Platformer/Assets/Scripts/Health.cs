@@ -5,6 +5,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField]private int health;
+    [SerializeField] private Animator animator;
     public int HealthPoint
     {
         get { return health; }
@@ -14,7 +15,7 @@ public class Health : MonoBehaviour
                 health = value;
         }
     }
-
+    
     private void Start()
     {
         //Debug.Log(Player.Instance.isCheatMode);
@@ -24,7 +25,8 @@ public class Health : MonoBehaviour
     public void TakeHit(int damage)
     {
         health -= damage;
-
+        if (animator != null)
+            animator.SetTrigger("TakeHit");
         if (health <= 0)
         {
             Destroy(gameObject);

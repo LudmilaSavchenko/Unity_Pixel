@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TriggerDamage : MonoBehaviour
 {
+    [SerializeField] private Animator animator;
     [SerializeField] private int damage;
     public int Damage
     {

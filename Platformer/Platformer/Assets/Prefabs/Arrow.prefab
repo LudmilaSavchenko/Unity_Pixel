@@ -147,7 +147,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 9040826117683394842}
   rigidbody: {fileID: 9040826117683394843}
   triggerDamage: {fileID: 2009850436}
-  force: 4
+  force: 5
   lifeTime: 3
 --- !u!95 &7431802638492008788
 Animator:
@@ -180,5 +180,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c643110b1a8a5c4187b00611dade445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  animator: {fileID: 0}
+  damage: 30
   isDestroyingAfterCollision: 1

@@ -40,8 +40,8 @@ public class EnemyPatrol : MonoBehaviour
         }
 
         if (rigidbody.velocity.x > 0)
-            spriteRenderer.flipX = true;
-        else { spriteRenderer.flipX = false; }
+            spriteRenderer.flipX = false;
+        else { spriteRenderer.flipX = true; }
 
         animator.SetFloat("Speed", Mathf.Abs(speed));
     }
