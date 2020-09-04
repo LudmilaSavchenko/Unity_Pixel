@@ -1,10 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEngine.UI;
 using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
-    [SerializeField]private int coinsCount;
+    [SerializeField] private Text coinsText;
+    [SerializeField] private int coinsCount;
     public int CoinsCount
     {
         get { return coinsCount; }
@@ -23,23 +23,31 @@ public class PlayerInventory : MonoBehaviour
         Instance = this;
     }
 
-    //private void OnTriggerEnter2D(Collider2D col)
-    //{
-    //    //if (col.gameObject.CompareTag("Coin"))
-    //    if (GameManager.Instance.coinContainer.ContainsKey(col.gameObject))
-    //    {
-    //        CoinsCount++;
-    //        //Destroy(col.gameObject);
-    //        var coin = GameManager.Instance.coinContainer[col.gameObject];
-    //        coin.StartDestroy();
-    //    }
+    private void Start()
+    {
+        coinsText.text = "Количество монет: 0";
+    }
 
-    //    if (col.gameObject.CompareTag("First aid kit"))
-    //    {
-    //        Health healthKit = col.gameObject.GetComponent<Health>();
-    //        Health health = this.gameObject.GetComponent<Health>();
-    //        health.SetHealth(healthKit.HealthPoint);
-    //        Destroy(col.gameObject);
-    //    }
-    //}
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        //if (col.gameObject.CompareTag("Coin"))
+        if (GameManager.Instance.coinContainer.ContainsKey(col.gameObject))
+        {
+            CoinsCount++;
+            coinsText.text = "Количество монет: " + coinsCount;
+           //Destroy(col.gameObject);
+           var coin = GameManager.Instance.coinContainer[col.gameObject];
+            coin.StartDestroy();
+            Debug.Log("Player после StartDestroy");
+        }
+
+        if (col.gameObject.CompareTag("First aid kit"))
+        {
+            Health healthKit = col.gameObject.GetComponent<Health>();
+            Health health = this.gameObject.GetComponent<Health>();
+            health.SetHealth(healthKit.HealthPoint);
+            Destroy(col.gameObject);
+        }
+    }
+
 }

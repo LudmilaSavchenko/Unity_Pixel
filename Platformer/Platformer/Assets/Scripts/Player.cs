@@ -74,26 +74,26 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        //if (col.gameObject.CompareTag("Coin"))
-        if (GameManager.Instance.coinContainer.ContainsKey(col.gameObject))
-        {
-            PlayerInventory.Instance.CoinsCount++;
-            //Destroy(col.gameObject);
-            var coin = GameManager.Instance.coinContainer[col.gameObject];
-            coin.StartDestroy();
-            Debug.Log("Player после StartDestroy");
-        }
+    //private void OnTriggerEnter2D(Collider2D col)
+    //{
+    //    //if (col.gameObject.CompareTag("Coin"))
+    //    if (GameManager.Instance.coinContainer.ContainsKey(col.gameObject))
+    //    {
+    //        PlayerInventory.Instance.CoinsCount++;
+    //        //Destroy(col.gameObject);
+    //        var coin = GameManager.Instance.coinContainer[col.gameObject];
+    //        coin.StartDestroy();
+    //        Debug.Log("Player после StartDestroy");
+    //    }
 
-        if (col.gameObject.CompareTag("First aid kit"))
-        {
-            Health healthKit = col.gameObject.GetComponent<Health>();
-            Health health = this.gameObject.GetComponent<Health>();
-            health.SetHealth(healthKit.HealthPoint);
-            Destroy(col.gameObject);
-        }
-    }
+    //    if (col.gameObject.CompareTag("First aid kit"))
+    //    {
+    //        Health healthKit = col.gameObject.GetComponent<Health>();
+    //        Health health = this.gameObject.GetComponent<Health>();
+    //        health.SetHealth(healthKit.HealthPoint);
+    //        Destroy(col.gameObject);
+    //    }
+    //}
 
     // Update is called once per frame
     void FixedUpdate()
@@ -118,12 +118,12 @@ public class Player : MonoBehaviour
         direction.y = rigidbody.velocity.y;
         rigidbody.velocity = direction;
 
-        if (Input.GetKeyDown(KeyCode.Space) && groundDetection.isGrounded)
-        {
-            rigidbody.AddForce(Vector2.up * force, ForceMode2D.Impulse);
-            animator.SetTrigger("StartJump");
-            isJumping = true;
-        }
+        //if (Input.GetKeyDown(KeyCode.Space) && groundDetection.isGrounded)
+        //{
+        //    rigidbody.AddForce(Vector2.up * force, ForceMode2D.Impulse);
+        //    animator.SetTrigger("StartJump");
+        //    isJumping = true;
+        //}
 
         if (direction.x > 0)
         {
@@ -141,6 +141,13 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.Space) && groundDetection.isGrounded)
+        {
+            rigidbody.AddForce(Vector2.up * force, ForceMode2D.Impulse);
+            animator.SetTrigger("StartJump");
+            isJumping = true;
+        }
         CheckShoot();
     }
 

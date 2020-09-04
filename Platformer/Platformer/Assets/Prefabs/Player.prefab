@@ -784,7 +784,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  force: 2
+  force: 5
   rigidbody: {fileID: 4072820398642449986}
   minimalHeight: -20
   isCheatMode: 1
@@ -794,7 +794,7 @@ MonoBehaviour:
   arrow: {fileID: 1409725728300213267, guid: a0f531025befba24893303065b4e62be, type: 3}
   arrowSpawPoint: {fileID: 1580617235991536921}
   isReadyToShoot: 1
-  coolDownShot: 3
+  coolDownShot: 2
   arrowCount: 3
 --- !u!114 &4072820398375097225
 MonoBehaviour:
@@ -839,6 +839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7f5473b0e36dd843aed1778865a4c16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinsText: {fileID: 0}
   coinsCount: 0
 --- !u!61 &1685231327
 BoxCollider2D:
