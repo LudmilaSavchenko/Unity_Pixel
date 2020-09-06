@@ -28,4 +28,13 @@ public class GameManager : MonoBehaviour
     //        healthContainer.Add(health.gameObject, health);
     //    }
     //}
+
+    public void onClickPause()
+    {   
+        if (Time.timeScale > 0)
+            Time.timeScale = 0;
+        else
+            Time.timeScale = 1;
+
+    }
 }

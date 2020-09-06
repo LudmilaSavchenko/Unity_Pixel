@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
+    //насколько возможно в Unity переносить текст в класс констант??
     [SerializeField] private Text coinsText;
     [SerializeField] private int coinsCount;
     public int CoinsCount
@@ -25,7 +26,7 @@ public class PlayerInventory : MonoBehaviour
 
     private void Start()
     {
-        coinsText.text = "Количество монет: 0";
+        coinsText.text = coinsCount.ToString();//"Количество монет: 0";
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -34,11 +35,11 @@ public class PlayerInventory : MonoBehaviour
         if (GameManager.Instance.coinContainer.ContainsKey(col.gameObject))
         {
             CoinsCount++;
-            coinsText.text = "Количество монет: " + coinsCount;
+            coinsText.text = coinsCount.ToString();
            //Destroy(col.gameObject);
            var coin = GameManager.Instance.coinContainer[col.gameObject];
             coin.StartDestroy();
-            Debug.Log("Player после StartDestroy");
+        
         }
 
         if (col.gameObject.CompareTag("First aid kit"))
