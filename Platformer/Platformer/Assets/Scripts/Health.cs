@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField]private int health;
+    [SerializeField] private int health;
+    public int CurrentHealth {get { return health; }}
     [SerializeField] private Animator animator;
     public int HealthPoint
     {

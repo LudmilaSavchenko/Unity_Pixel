@@ -36,6 +36,8 @@ public class Player : MonoBehaviour
                 minimalHeight = value;
         }
     }
+    [SerializeField] private Health health;
+    public Health Health { get { return health; } }
 
     public bool isCheatMode;
     public GroundDetection groundDetection;
