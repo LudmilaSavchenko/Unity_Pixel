@@ -595,7 +595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 1282558122}
-  delta: 0.5
+  delta: 0.005
 --- !u!4 &398558728 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4860252325115546693, guid: 4db002e9ea96bf540aa754d66c52e1f1,
